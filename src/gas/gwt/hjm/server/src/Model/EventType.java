@@ -13,32 +13,31 @@ package gas.gwt.hjm.server.src.Model;
 
 public enum EventType {
 
-	SCHEDULED("Sch.","SCHED"),
-	FILL("Fill","FILL");
-	//	BONUS("BONUS")
+	SCHEDULED("Sch."),
+	FILL("Fill");
 
+	private final String value;
 
-	private final String CCMSvalue;
-	private final String SCTE118value;
-
-
-	EventType(String CCMSvaluep, String SCTE118valuep) {
-		this.CCMSvalue = CCMSvaluep;
-		this.SCTE118value = SCTE118valuep;
+	EventType(String value) {
+		this.value = value;
 	}
 
-	public String getCCMsValue() {
-		return CCMSvalue;
+	public String getValue() {
+		return value;
 	}
 
-	public String getSCTE118value() {
-		return SCTE118value;
-	}
-
-	public static EventType getNameByValue(String value) {
+	public static String getNameByValue(String value) {
 		for(EventType e : EventType.values()){
-			if(value.equals(e.CCMSvalue) || value.equals(e.SCTE118value)) return e;
+			if(value.equals(e.value)) return e.name();
 		}
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		return this.getValue();
+	}
+
+
+
 }

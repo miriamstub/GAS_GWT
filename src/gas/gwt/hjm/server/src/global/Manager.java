@@ -2,13 +2,13 @@ package gas.gwt.hjm.server.src.global;
 
 import gas.gwt.hjm.server.src.Model.Event;
 import gas.gwt.hjm.server.src.Model.SchedulerInfo;
+import gas.gwt.hjm.server.src.Model.UUID;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * This class hold the tree of all the objects. singleton class.
@@ -60,15 +60,14 @@ public class Manager {
 		&& UUIDPool.remove(eventId);
 	}
 
-	private static Set<UUID> UUIDPool = new HashSet<UUID>();
-	
-	public String getUUID(){
-		UUID uuid = UUID.randomUUID();
+	private static Set<String> UUIDPool = new HashSet<String>();
+	public static String getUUID(){
+		String uuid = UUID.uuid();
 		while(!UUIDPool.add(uuid)){
-			uuid = UUID.randomUUID();
+			uuid = UUID.uuid();
 			System.out.println("Duplicate UUID!!!");
 		}
-		return uuid.toString();
+		return uuid;
 	}
 
 }

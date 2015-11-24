@@ -1,2 +1,0 @@
-serviceClass: gas.gwt.hjm.client.GreetingService
-path: 1DC6354A0AEB2EFA78AF5187BE854A9A.gwt.rpc

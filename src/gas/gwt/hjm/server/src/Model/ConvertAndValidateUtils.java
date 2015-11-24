@@ -1,9 +1,5 @@
 package gas.gwt.hjm.server.src.Model;
 
-import org.apache.log4j.Logger;
-
-import gas.gwt.hjm.server.src.log.Log;
-
 import java.util.Date;
 
 /**
@@ -19,9 +15,8 @@ import java.util.Date;
  */
 public final class ConvertAndValidateUtils {
 
-	static Logger log = Log.getInstance();
+
 	private static IProperties iproperties;//maybe static problem to check
-	static String numericRgx = "\\d+";//"[0-9]+"
 
 	public static void setIProperties(SchedulerInfoType schInfoType){
 		iproperties = getPropertiesClass(schInfoType);
@@ -29,7 +24,7 @@ public final class ConvertAndValidateUtils {
 
 	public static Date getDate(String date) {
 		Date d = DateUtils.getFormattedDate(iproperties.getDateFormat(),date);
-		if(d!=null)
+		if(iproperties.assertDateDigitsLength(date) &&  d!=null)
 			return d;
 		else
 			return null;
@@ -37,7 +32,7 @@ public final class ConvertAndValidateUtils {
 
 	public static Date getTime(String time) {
 		Date d = DateUtils.getFormattedDate(iproperties.getTimeFormat(),time);
-		if(d!=null)
+		if(iproperties.assertTimeDigitsLength(time) &&  d!=null)
 			return d;
 		else
 			return null;
@@ -46,7 +41,7 @@ public final class ConvertAndValidateUtils {
 
 	public static Date getStart(String start) {
 		Date d = DateUtils.getFormattedDate(iproperties.getStartFormat(),start);
-		if(d!=null)
+		if(iproperties.assertStartDigitsLength(start) &&  d!=null)
 			return d;
 		else
 			return null;
@@ -54,57 +49,46 @@ public final class ConvertAndValidateUtils {
 
 	public static Date getDuration(String duration) {
 		Date d = DateUtils.getFormattedDate(iproperties.getDurationFormat(),duration);
-		if(d!=null)
+		if(iproperties.assertDurationDigitsLength(duration) &&  d!=null)
 			return d;
 		else
 			return null;
 	}
 
-	public static Integer getBrk(String brk) {
-		if(iproperties.assertBrkDigitsLength(brk) && brk.matches(numericRgx))
+	public static Integer getBrk(String brk) {//TODO to validate what happen when convert to int is failed e.g. try to convert "!01"
+		if(iproperties.assertBrkDigitsLength(brk))
 			return Integer.parseInt(brk);
-		else{
-			log.error("brk invalid digits");		
+		else
 			return null;
-		}
 	}
-	
+
 	public static Integer getPos(String pos) {
-		if(iproperties.assertPosDigitsLength(pos) && pos.matches(numericRgx))
+		if(iproperties.assertPosDigitsLength(pos))
 			return Integer.parseInt(pos);
-		else{
-			log.error("pos invalid digits");
+		else
 			return null;
-		}
 	}
 
 	public static Date getLength(String length) {
 		Date d = DateUtils.getFormattedDate(iproperties.getLengthFormat(),length);
-		if(d!=null)
+		if(iproperties.assertLengthDigitsLength(length) &&  d!=null)
 			return d;
 		else
 			return null;
 	}
 
-	public static boolean isValidAdName(String adName) {
+	public static String getAdName(String adName) {
 		if(iproperties.assertAdNameDigitsLength(adName))
-			return true;
-		else{
-			log.error("adName invalid digits");
-			return false;
-		}
+			return adName;
+		else
+			return null;
 	}
 
-	
-	public static EventType getEventType(String eventType) {
-		EventType et = EventType.getNameByValue(eventType);
-		if(iproperties.assertEventTypeDigitsLength(eventType) && et != null){
-			return et;
-		}
-		else{
-			log.error("Event Type invalid");
+	public static EventType getEventType(String eventType) {//maybe to check if value exist in enum
+		if(iproperties.assertEventTypeDigitsLength(eventType))
+			return EventType.valueOf(EventType.getNameByValue(eventType));
+		else
 			return null;
-		}
 	}
 
 	public static boolean isValidStatusCode(String statusCode) {
@@ -158,8 +142,6 @@ public final class ConvertAndValidateUtils {
 		String sNum = Integer.toString(num);
 		if (sNum.length()< expectedDigits)
 			sNum  = completeDigits(expectedDigits - sNum.length()) + sNum;
-		else if (sNum.length() > expectedDigits)
-			return null;
 		return sNum;
 	}
 

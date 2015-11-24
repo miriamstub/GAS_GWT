@@ -2,9 +2,7 @@ package gas.gwt.hjm.server.src.Model;
 
 import gas.gwt.hjm.server.src.global.Manager;
 
-
 import java.io.Serializable;
-//import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -24,7 +22,7 @@ import java.util.*;
  * Nov 10, 2015
  */
 
-public class Event implements Comparable<Event>, Serializable{
+public class Event implements Comparable<Event>, Serializable {
 
 
 	/**
@@ -39,10 +37,11 @@ public class Event implements Comparable<Event>, Serializable{
 	private String stat;
 	private EventType eventType;
 	private String ID;
-
-	public Event () {
-		
+	
+	public Event() {
+		// default c-tor
 	}
+
 	public Event(Date date, Date time, Date start,Date duration, int brk, int pos, Date length,
 			/*String actualTime, String actualLength,String actualPos, String stat,*/
 			String adName, EventType eventType) {
@@ -127,7 +126,7 @@ public class Event implements Comparable<Event>, Serializable{
 	}
 	
 	public String generateUUID() {
-		this.ID = Manager.getInstance().getUUID();
+		this.ID = Manager.getUUID();
 		return this.ID;
 	}
 }

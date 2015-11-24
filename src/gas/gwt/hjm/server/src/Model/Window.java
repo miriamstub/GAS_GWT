@@ -1,7 +1,6 @@
 package gas.gwt.hjm.server.src.Model;
 
 import java.io.Serializable;
-//import java.io.Serializable;
 import java.util.Date;
 
 /**

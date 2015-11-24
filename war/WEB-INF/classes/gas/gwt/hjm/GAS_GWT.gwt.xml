@@ -16,6 +16,14 @@
   <!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+  
+   <!-- Inherit the UiBinder module.                               -->
+  <inherits name="com.google.gwt.uibinder.UiBinder"/>
+  <inherits name="com.github.gwtbootstrap.Bootstrap"/> 
+  <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
+    
+  <inherits name='com.github.gwtbootstrap.datepicker.Datepicker' />
+<!-- <inherits name="org.gwtbootstrap3.extras.respond.Respond"/> -->
 
   <!-- Other module inherits                                      -->
 
@@ -25,8 +33,6 @@
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>
   <source path='shared'/>
-<!--   <source path="server.src.API"/>
-  <source path="gas.gwt.hjm.server.src.Model"/> -->
   <source path="" excludes="src/*"/>
 
   <!-- allow Super Dev Mode -->

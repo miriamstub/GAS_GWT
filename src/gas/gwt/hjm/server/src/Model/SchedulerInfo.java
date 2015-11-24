@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+
 /**
  * SchedulerInfo.java abstract class
  * Contains basic scheduler's properties.
@@ -35,7 +36,6 @@ public abstract class SchedulerInfo implements Comparable<SchedulerInfo>, Serial
 	public SchedulerInfo() {
 		
 	}
-	
 	public SchedulerInfo(String schInfoName) {
 		super();
 		this.schInfoName = schInfoName;

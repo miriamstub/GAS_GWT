@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gas.gwt.hjm.server.src.Model;
 
 import java.text.ParseException;
@@ -6,14 +9,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * DateUtils.java class
- * Contains functions that deal with Date objects.
- * 
- * 
  * @author bfeldman 
  * Nov 10, 2015
  */
-
 public class DateUtils {
 	
 	public static Date getFormattedDate(DateFormats format, String value) {

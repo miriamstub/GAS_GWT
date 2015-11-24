@@ -131,7 +131,7 @@ public class GAS_GWT implements EntryPoint {
 
 		final Button createButton = new Button("Create");
 
-		RootPanel.get("createButtonContainer").add(createButton);
+//		RootPanel.get("createButtonContainer").add(new CreateEvent());
 
 		// Add a handler to close the DialogBox
 		createButton.addClickHandler(new ClickHandler() {

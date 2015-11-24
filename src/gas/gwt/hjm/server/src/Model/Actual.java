@@ -1,7 +1,6 @@
 package gas.gwt.hjm.server.src.Model;
 
 import java.io.Serializable;
-//import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +15,7 @@ import java.util.Date;
  * Nov 10, 2015
  */
 
-public class Actual implements Serializable{
+public class Actual implements Serializable {
 
 	/**
 	 * 
@@ -29,6 +28,7 @@ public class Actual implements Serializable{
 	public Actual() {
 		
 	}
+
 	public Actual(Date actualTime, Date actualLength, int actualPos) {
 		super();
 		setActualTime(actualTime);

@@ -21,6 +21,7 @@ public class SchDay extends SchedulerInfo {
 	private String date;
 	private String zone;
 	private String channel;
+	
 	public SchDay() {
 		
 	}
