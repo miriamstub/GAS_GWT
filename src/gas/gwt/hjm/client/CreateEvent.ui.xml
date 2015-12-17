@@ -42,6 +42,7 @@ xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
 		<g:TextBox ui:field="fileDate"></g:TextBox>
 		
 		<g:Button styleName="{style.important}" ui:field="create">Create</g:Button>
+		<g:Button styleName="{style.important}" ui:field="cancel">Cancel</g:Button>
 		
 	</g:HTMLPanel>
 </ui:UiBinder> 

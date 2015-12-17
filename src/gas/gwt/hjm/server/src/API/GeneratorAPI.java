@@ -33,6 +33,7 @@ public class GeneratorAPI {
 			String newUUID = event.generateUUID();
 			filesList.get(schedulerInfo.getSchInfoName()).getEventMap().put(newUUID, event);
 			logger.info("Created event: " +event.getID());
+			serializer(SchedulerInfoType.CCMS);
 			return event;
 		}
 		return null;

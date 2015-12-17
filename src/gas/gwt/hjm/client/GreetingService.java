@@ -1,5 +1,7 @@
 package gas.gwt.hjm.client;
 
+import java.util.List;
+
 import gas.gwt.hjm.server.src.Model.Event;
 import gas.gwt.hjm.server.src.Model.SchedulerInfo;
 
@@ -11,7 +13,8 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  */
 @RemoteServiceRelativePath("greet")
 public interface GreetingService extends RemoteService {
-	String greetServer(String name) throws IllegalArgumentException;
-
-	Event greetServer2(Event event, SchedulerInfo schedulerInfo);
+	List<Event> deserilze(String fileName);
+	List<Event> returnList(String fileName);
+	Event createEvent(Event event, SchedulerInfo si);
+	Boolean deleteEvent(Event event, SchedulerInfo si);
 }

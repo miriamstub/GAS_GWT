@@ -1,10 +1,13 @@
 package gas.gwt.hjm.server;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gas.gwt.hjm.client.GreetingService;
 import gas.gwt.hjm.server.src.API.GeneratorAPI;
 import gas.gwt.hjm.server.src.Model.Event;
 import gas.gwt.hjm.server.src.Model.SchedulerInfo;
-import gas.gwt.hjm.shared.FieldVerifier;
+import gas.gwt.hjm.server.src.global.Manager;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -15,44 +18,26 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 public class GreetingServiceImpl extends RemoteServiceServlet implements
 		GreetingService {
 
-	public String greetServer(String input) throws IllegalArgumentException {
-		// Verify that the input is valid. 
-		if (!FieldVerifier.isValidName(input)) {
-			// If the input is not valid, throw an IllegalArgumentException back to
-			// the client.
-			throw new IllegalArgumentException(
-					"Name must be at least 4 characters long");
-		}
+	@Override
+	public List<Event> deserilze(String fileName) {
+		GeneratorAPI.deserializer();
 
-		String serverInfo = getServletContext().getServerInfo();
-		String userAgent = getThreadLocalRequest().getHeader("User-Agent");
-
-		// Escape data from the client to avoid cross-site script vulnerabilities.
-		input = escapeHtml(input);
-		userAgent = escapeHtml(userAgent);
-
-		return "Hello, " + input + "!<br><br>I am running " + serverInfo
-				+ ".<br><br>It looks like you are using:<br>" + userAgent;
-	}
-
-	/**
-	 * Escape an html string. Escaping data received from the client helps to
-	 * prevent cross-site script vulnerabilities.
-	 * 
-	 * @param html the html string to escape
-	 * @return the escaped string
-	 */
-	private String escapeHtml(String html) {
-		if (html == null) {
-			return null;
-		}
-		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;");
+		return new ArrayList<Event>(Manager.getInstance().getAllEvents(fileName));
 	}
 
 	@Override
-	public Event greetServer2(Event event, SchedulerInfo schedulerInfo) {
-		Event e = GeneratorAPI.createEvent(event, schedulerInfo);
-		return e;
+	public Event createEvent(Event event, SchedulerInfo si) {
+		return GeneratorAPI.createEvent(event, si);
+	}
+
+	@Override
+	public List<Event> returnList(String fileName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean deleteEvent(Event event, SchedulerInfo si) {
+		return GeneratorAPI.deleteEvent(si.getSchInfoName(), event.getID());
 	}
 }

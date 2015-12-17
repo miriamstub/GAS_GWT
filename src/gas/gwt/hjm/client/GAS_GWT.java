@@ -1,22 +1,6 @@
 package gas.gwt.hjm.client;
-
-import java.util.Date;
-
-import gas.gwt.hjm.server.src.Model.Event;
-import gas.gwt.hjm.server.src.Model.EventType;
-import gas.gwt.hjm.server.src.Model.SchDay;
-
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.datepicker.client.DatePicker;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -34,18 +18,42 @@ public class GAS_GWT implements EntryPoint {
 	 * Create a remote service proxy to talk to the server-side Greeting
 	 * service.
 	 */
-	private final GreetingServiceAsync greetingService = GWT
-			.create(GreetingService.class);
+//	private final GreetingServiceAsync greetingService = GWT
+//			.create(GreetingService.class);
 
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		
+		
+		
+		/*  // Create a CellTable.
+	    final CellTable<Event> table = new CellTable<Event>();
+	    // Display 3 rows in one page
+	    table.setPageSize(3);
+
+
+
+	    SimplePager pager = new SimplePager();
+	    pager.setDisplay(table);
+
+	    VerticalPanel vp = new VerticalPanel();
+	    vp.add(table);
+	    vp.add(pager);
+
+	    // Add it to the root panel.
+	    RootPanel.get().add(vp);*/
+	    
+		
+		RootPanel.get("main").add(new Main());
+		
+		/*RootPanel.get("main").add(new CreateEvent());
 
 		final Label lDateField = new Label("Date");
-		RootPanel.get("createButtonContainer").add(lDateField);
+		RootPanel.get("main").add(lDateField);
 		final DatePicker tbDateField = new DatePicker();
-		RootPanel.get("createButtonContainer").add(tbDateField);
+		RootPanel.get("main").add(tbDateField);
 
 		final Label lTimeField = new Label("Time");
 		RootPanel.get("createButtonContainer").add(lTimeField);
@@ -179,6 +187,6 @@ public class GAS_GWT implements EntryPoint {
 				});
 			}
 		});
-
+*/
 	}
 }
